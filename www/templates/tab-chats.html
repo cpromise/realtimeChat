@@ -3,7 +3,7 @@
 
     <div class="list">
       <a class="item item-avatar" ng-repeat="chat in chats">
-        <img>
+        <img ng-src="{{chat.img}}">
         <h2>{{chat.user}}</h2>
         <p>{{chat.message}}</p>
       </a>

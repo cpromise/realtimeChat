@@ -15,19 +15,37 @@ angular.module('starter.controllers', ['firebase'])
 
 		//채팅에서 전송을 하면 실행될 메소드
 		$scope.sendChat = function(chat){
-			//$add는 Firebase에서 제공하는 메소드입니다.
-			$scope.chats.$add({
-				user: 'Guest',
-				message: chat.message
-			});
-			
-			//채팅내용을 전송하면 채팅창 비워줘야겠죠? 채팅메시지를 빈문자열로 초기화
-			chat.message = "";
+
+			if($rootScope.authData){
+				//$add는 Firebase에서 제공하는 메소드입니다.
+				$scope.chats.$add({
+					user: $rootScope.authData.facebook.displayName,
+					message: chat.message,
+					img: $rootScope.authData.facebook.profileImageURL
+				});
+				
+				//채팅내용을 전송하면 채팅창 비워줘야겠죠? 채팅메시지를 빈문자열로 초기화
+				chat.message = "";				
+			}
+			else{
+				alert("You need to login");
+			}
+
 		}
 }])
 
 
 
-.controller('AccountCtrl', function($scope) {
-	
+.controller('AccountCtrl', function($scope, $rootScope) {
+	$scope.login = function(){
+		var ref = new Firebase("https://rhammer2.firebaseio.com");
+		ref.authWithOAuthPopup("facebook", function(error, authData) {
+		  if (error) {
+		    console.log("Login Failed!", error);
+		  } else {
+		    console.log("Authenticated successfully with payload:", authData);
+		    $rootScope.authData = authData;
+		  }
+		},{remember:"default"});
+	}
 });
