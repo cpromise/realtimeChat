@@ -29,14 +29,5 @@ angular.module('starter.controllers', ['firebase'])
 
 
 .controller('AccountCtrl', function($scope) {
-	$scope.login = function(){
-		var ref = new Firebase("https://rhammer2.firebaseio.com");
-		ref.authWithOAuthPopup("facebook", function(error, authData) {
-		if (error) {
-			console.log("Login Failed!", error);
-		} 
-		else {
-			console.log("Authenticated successfully with payload:", authData);
-		}
-	});
+	
 });
