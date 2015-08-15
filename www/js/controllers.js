@@ -86,6 +86,18 @@ angular.module('starter.controllers', ['firebase'])
 		});
 	};
 
+	$scope.resetPassword = function(username){
+		ref.resetPassword({
+			email : username
+		}, function(error) {
+			if (error === null) {
+				console.log("Password reset email sent successfully");
+			} else {
+				console.log("Error sending password reset email:", error);
+			}
+		});
+	};
+
 	$scope.loginWithFacebook = function(){
 		ref.authWithOAuthPopup("facebook", function(error, authData) {
 		  if (error) {
