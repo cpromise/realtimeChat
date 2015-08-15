@@ -98,6 +98,19 @@ angular.module('starter.controllers', ['firebase'])
 		});
 	};
 
+	$scope.deactivate = function(username, password){
+		ref.removeUser({
+			email    : username,
+			password : password
+		}, function(error) {
+			if (error === null) {
+				console.log("User removed successfully");
+			} else {
+				console.log("Error removing user:", error);
+			}
+		});		
+	};
+
 	$scope.loginWithFacebook = function(){
 		ref.authWithOAuthPopup("facebook", function(error, authData) {
 		  if (error) {
