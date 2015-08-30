@@ -11,7 +11,13 @@
 
     <form>
       <div class="list">
-        <div class="item item-input-inset" >
+        <div class="item item-input-inset" style="overflow:visible">
+          <ul style="position:absolute; bottom:50px; width:40px; display:none;" class="sndBtnWrap">
+            <li class="" ng-click="takePicture()"><a class="button button-icon icon ion-camera" style="padding:0"></a></li>
+            <li class="" ng-click="uploadPhoto()"><a class="button button-icon icon ion-images" style="padding:0"></a></li>
+          </ul>
+          <a class="button button-icon icon ion-plus-round imgSndBtn" style="padding-left:0"></a>
+
           <label class="item-input-wrapper">
             <input type="text" placeholder="Message" ng-model="chat.message" style="">
           </label>

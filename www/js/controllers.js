@@ -47,6 +47,52 @@ angular.module('starter.controllers', ['firebase'])
 			}
 
 		}
+
+		//카메라 부분
+		//사진 업로드용 (+)버튼 토글 이벤트
+		jQuery('.imgSndBtn').click(function () {
+			jQuery('.sndBtnWrap').slideToggle();
+		});
+
+		var takePicture = function(){
+			var options = {
+				quality          : 75,
+				destinationType  : Camera.DestinationType.DATA_URL,
+				sourceType       : Camera.PictureSourceType.CAMERA,
+				allowEdit        : true,
+				encodingType     : Camera.EncodingType.JPEG,
+				targetWidth      : 300,
+				targetHeight     : 300,
+				popoverOptions   : CameraPopoverOptions,
+				saveToPhotoAlbum : false
+			};
+			navigator.camera.getPicture(function(imageURI) {
+
+			}, function(err) {
+
+			}, options);
+		};
+		$scope.takePicture = takePicture;
+
+		var uploadPhoto = function(){
+			var options = {
+				quality          : 75,
+				destinationType  : Camera.DestinationType.DATA_URL,
+				sourceType       : Camera.PictureSourceType.PHOTOLIBRARY,
+				allowEdit        : true,
+				encodingType     : Camera.EncodingType.JPEG,
+				targetWidth      : 300,
+				targetHeight     : 300,
+				popoverOptions   : CameraPopoverOptions,
+				saveToPhotoAlbum : false
+			};
+			navigator.camera.getPicture(function(imageURI) {
+
+			}, function(err) {
+
+			}, options);
+		};
+		$scope.uploadPhoto = uploadPhoto;
 }])
 
 
